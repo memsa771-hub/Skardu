@@ -95,21 +95,32 @@ server {
 OK "nestopia.conf written"
 
 # ----------------------------------------------------------
-# 5. Test nginx config
+# 5. Ensure nginx logs directory exists (required on Windows)
+# ----------------------------------------------------------
+New-Item -ItemType Directory -Force -Path "$nginxDir\logs" | Out-Null
+OK "nginx logs directory ready"
+
+# ----------------------------------------------------------
+# 6. Test nginx config (must run FROM nginx directory on Windows)
 # ----------------------------------------------------------
 Log "Testing nginx configuration..."
-$test = & "$nginxDir\nginx.exe" -p "$nginxDir" -t 2>&1
-if ($LASTEXITCODE -ne 0) {
+Push-Location $nginxDir
+$test = & ".\nginx.exe" -t 2>&1
+$testCode = $LASTEXITCODE
+Pop-Location
+if ($testCode -ne 0) {
     Write-Host $test
     Die "nginx config test failed — check the output above"
 }
 OK "nginx config OK"
 
 # ----------------------------------------------------------
-# 6. Reload nginx (zero-downtime)
+# 7. Reload nginx (zero-downtime)
 # ----------------------------------------------------------
 Log "Reloading nginx..."
-& "$nginxDir\nginx.exe" -p "$nginxDir" -s reload
+Push-Location $nginxDir
+& ".\nginx.exe" -s reload
+Pop-Location
 OK "nginx reloaded — site live on http://$DOMAIN"
 
 # ----------------------------------------------------------
@@ -182,7 +193,9 @@ server {
 }
 "@
     [System.IO.File]::WriteAllText("$nginxSites\nestopia.conf", $httpsConf, [System.Text.Encoding]::UTF8)
-    & "$nginxDir\nginx.exe" -p "$nginxDir" -s reload
+    Push-Location $nginxDir
+    & ".\nginx.exe" -s reload
+    Pop-Location
     OK "HTTPS live at https://$DOMAIN"
 }
 

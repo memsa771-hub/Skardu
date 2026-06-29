@@ -1,0 +1,359 @@
+﻿.page {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.canvasWrap {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: #ddd8d0;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.overlay > * {
+  pointer-events: auto;
+}
+
+/* Top bar */
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.5rem;
+  background: rgba(13,13,13,0.92);
+  border-bottom: 1px solid rgba(201,169,110,0.15);
+  backdrop-filter: blur(10px);
+}
+
+.backLink {
+  color: rgba(255,255,255,0.5);
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+  transition: color 0.3s;
+}
+
+.backLink:hover { color: #fff; }
+
+.zoneLabel {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: #fff;
+  letter-spacing: 0.05em;
+}
+
+.bookLink {
+  padding: 0.5rem 1.1rem;
+  background: #c9a96e;
+  color: #fff;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.bookLink:hover { background: #b8955c; }
+
+/* Welcome hint */
+.controlsHint {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(6px);
+}
+
+.hintCard {
+  background: #111;
+  border: 1px solid rgba(201,169,110,0.2);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+  padding: 2.5rem 3rem;
+  max-width: 440px;
+  text-align: center;
+}
+
+.hintGold {
+  font-size: 0.75rem;
+  letter-spacing: 0.35em;
+  color: #c9a96e;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.hintCard h3 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 0.4rem;
+}
+
+.hintCard > p {
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.hintCard ul {
+  list-style: none;
+  text-align: left;
+  margin-bottom: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.hintCard li {
+  color: rgba(255,255,255,0.6);
+  font-size: 0.88rem;
+  padding-left: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.hintCard li span {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.dismissBtn {
+  width: 100%;
+  padding: 0.9rem;
+  background: #c9a96e;
+  color: #fff;
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  border: none;
+  transition: background 0.2s;
+}
+
+.dismissBtn:hover { background: #b8955c; }
+
+/* Sidebar */
+.roomSidebar {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(13,13,13,0.94);
+  border: 1px solid rgba(201,169,110,0.15);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+  padding: 0.75rem;
+  max-width: 230px;
+  width: 230px;
+  backdrop-filter: blur(12px);
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* Floor tabs */
+.floorTabs {
+  display: flex;
+  margin-bottom: 0.75rem;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.floorTab {
+  flex: 1;
+  padding: 0.45rem 0.5rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  background: none;
+  border: none;
+  transition: all 0.25s;
+  cursor: pointer;
+}
+
+.floorTab:first-child {
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+
+.floorTab:hover { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.8); }
+
+.floorActive {
+  background: #c9a96e !important;
+  color: #fff !important;
+}
+
+.sidebarTitle {
+  font-size: 0.67rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 0.5rem;
+  padding: 0 0.25rem;
+}
+
+.roomBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  width: 100%;
+  padding: 0.55rem 0.5rem;
+  text-align: left;
+  color: rgba(255,255,255,0.5);
+  font-size: 0.77rem;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: all 0.25s;
+  cursor: pointer;
+  background: none;
+  border-radius: 0;
+}
+
+.roomBtn:last-child { border-bottom: none; }
+
+.roomBtn:hover,
+.roomBtn.active {
+  color: #fff;
+  background: rgba(255,255,255,0.04);
+}
+
+.roomBtn.active {
+  border-left: 2px solid #c9a96e;
+  padding-left: 0.35rem;
+}
+
+.roomDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.roomName {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.roomPrice {
+  font-size: 0.62rem;
+  color: rgba(255,255,255,0.3);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Room info panel */
+.roomInfo {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  right: 255px;
+  background: rgba(13,13,13,0.95);
+  border: 1px solid rgba(201,169,110,0.15);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+  padding: 1.5rem;
+  backdrop-filter: blur(12px);
+  max-width: 520px;
+}
+
+.roomInfoFloor {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #c9a96e;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+}
+
+.roomInfo h4 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: #fff;
+  margin-bottom: 0.2rem;
+}
+
+.roomInfoConfig {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.65rem;
+}
+
+.roomInfoDesc {
+  color: rgba(255,255,255,0.55);
+  font-size: 0.88rem;
+  line-height: 1.65;
+  margin-bottom: 0.85rem;
+}
+
+.amenities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.amenities span {
+  padding: 0.22rem 0.55rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.04em;
+}
+
+.roomInfoFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.roomInfoPrice {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.roomInfoPrice span {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-weight: 400;
+  margin-left: 0.2rem;
+}
+
+.bookRoomBtn {
+  padding: 0.65rem 1.4rem;
+  background: #c9a96e;
+  color: #fff;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.bookRoomBtn:hover { background: #b8955c; }
+
+@media (max-width: 900px) {
+  .roomSidebar {
+    right: 0.5rem;
+    max-width: 180px;
+    width: 180px;
+  }
+  .roomName { display: none; }
+  .roomInfo { right: 200px; }
+}
+
+@media (max-width: 640px) {
+  .roomSidebar { display: none; }
+  .roomInfo { left: 0.75rem; right: 0.75rem; bottom: 0.75rem; }
+}

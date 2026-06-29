@@ -1,0 +1,165 @@
+﻿/* CONTACT PAGE */
+.page { min-height: 100vh; background: #0d0d0d; }
+
+/* HERO */
+.hero {
+  position: relative; height: 52vh; min-height: 380px;
+  display: flex; align-items: flex-end; overflow: hidden;
+}
+.heroBg {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  animation: slowZoom 20s ease-in-out infinite alternate;
+}
+@keyframes slowZoom { from { transform: scale(1.04); } to { transform: scale(1.0); } }
+.heroOverlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.5) 100%);
+}
+.heroContent {
+  position: relative; z-index: 2;
+  max-width: 1400px; margin: 0 auto; padding: 0 2.5rem 3.5rem; width: 100%;
+}
+.eyebrow {
+  font-size: 0.72rem; letter-spacing: 0.32em; text-transform: uppercase;
+  color: #c9a96e; font-weight: 500; margin-bottom: 0.6rem; display: block;
+}
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 7vw, 5rem); font-weight: 700; color: #fff; line-height: 1;
+}
+.goldLine { width: 60px; height: 2px; background: #c9a96e; margin: 1rem 0; }
+.sub { color: rgba(255,255,255,0.65); font-size: 1rem; max-width: 500px; line-height: 1.7; }
+
+/* MAIN GRID */
+.mainGrid {
+  max-width: 1400px; margin: 0 auto; padding: 5rem 2.5rem;
+  display: grid; grid-template-columns: 400px 1fr; gap: 5rem;
+}
+
+/* INFO COLUMN */
+.infoHeader { margin-bottom: 2.5rem; }
+.eyebrowDark {
+  font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: #c9a96e; font-weight: 500; margin-bottom: 0.6rem; display: block;
+}
+.infoHeader h2, .formHeader h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem; font-weight: 700; color: #fff; line-height: 1.2;
+}
+.cards { display: flex; flex-direction: column; gap: 1px; margin-bottom: 2.5rem; }
+.infoCard {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1.4rem 1.5rem;
+  background: #141414; border: 1px solid rgba(255,255,255,0.04);
+  transition: border-color 0.3s;
+}
+.infoCard:hover { border-color: rgba(201,169,110,0.2); }
+.cardIcon { font-size: 1.3rem; flex-shrink: 0; margin-top: 0.15rem; }
+.cardLabel {
+  font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: #c9a96e; font-weight: 600; margin-bottom: 0.4rem;
+}
+.cardLine { font-size: 0.87rem; color: rgba(255,255,255,0.6); margin-bottom: 0.1rem; }
+.cardLink {
+  display: block; font-size: 0.87rem; color: rgba(255,255,255,0.75);
+  text-decoration: none; transition: color 0.2s;
+  margin-bottom: 0.15rem;
+}
+.cardLink:hover { color: #c9a96e; }
+
+/* SOCIAL */
+.socialBlock { margin-bottom: 2.5rem; }
+.socialLabel {
+  font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(255,255,255,0.35); margin-bottom: 1rem; display: block;
+}
+.socialList { display: flex; flex-direction: column; gap: 0.7rem; }
+.socialItem {
+  display: flex; align-items: center; gap: 0.8rem;
+  font-size: 0.9rem;
+}
+.socialItem > span { font-size: 1.2rem; }
+.socialPlatform {
+  display: block; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.35); margin-bottom: 0.1rem;
+}
+.socialHandle { font-size: 0.87rem; color: rgba(255,255,255,0.7); }
+
+/* MAP */
+.mapWrap { height: 260px; overflow: hidden; border: 1px solid rgba(255,255,255,0.07); }
+.mapWrap iframe { width: 100%; height: 100%; border: none; filter: invert(90%) hue-rotate(180deg) saturate(0.7); }
+
+/* FORM COLUMN */
+.formHeader { margin-bottom: 2.5rem; }
+.form {
+  background: #111;
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 3rem;
+}
+.fieldRow { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 0; }
+
+/* FIELD */
+.field { position: relative; margin-bottom: 1.8rem; }
+.field label {
+  display: block; font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(255,255,255,0.45); margin-bottom: 0.6rem; font-weight: 500;
+  transition: color 0.3s;
+}
+.fieldFocused label { color: #c9a96e; }
+.field input, .field textarea {
+  width: 100%; background: transparent;
+  border: none; border-bottom: 1px solid rgba(255,255,255,0.12);
+  color: #fff; font-size: 0.95rem; font-family: 'Outfit', sans-serif;
+  padding: 0.6rem 0; outline: none;
+  transition: border-color 0.3s;
+  resize: vertical;
+}
+.field input:focus, .field textarea:focus { border-bottom-color: rgba(201,169,110,0.5); }
+.fieldLine {
+  position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
+  background: #c9a96e; transition: width 0.4s ease;
+}
+.fieldFocused .fieldLine { width: 100%; }
+
+/* SUBMIT */
+.submitBtn {
+  width: 100%; padding: 1.1rem;
+  background: #c9a96e; color: #0d0d0d;
+  border: none; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  cursor: pointer; transition: all 0.3s; margin-top: 0.5rem;
+}
+.submitBtn:hover { background: #d4b57e; transform: translateY(-2px); }
+
+/* SUCCESS */
+.success {
+  background: #111; border: 1px solid rgba(201,169,110,0.2);
+  padding: 5rem 3rem; text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 1.2rem;
+}
+.successIcon {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: rgba(201,169,110,0.12); border: 1px solid rgba(201,169,110,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem; color: #c9a96e;
+}
+.success h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem; font-weight: 700; color: #fff;
+}
+.success p { color: rgba(255,255,255,0.6); max-width: 360px; }
+.resetBtn {
+  padding: 0.8rem 1.8rem; border: 1px solid rgba(201,169,110,0.4); background: transparent;
+  color: #c9a96e; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  cursor: pointer; transition: all 0.3s; margin-top: 0.5rem;
+}
+.resetBtn:hover { background: rgba(201,169,110,0.1); border-color: #c9a96e; }
+
+/* RESPONSIVE */
+@media (max-width: 1100px) {
+  .mainGrid { grid-template-columns: 320px 1fr; gap: 3rem; }
+}
+@media (max-width: 900px) {
+  .mainGrid { grid-template-columns: 1fr; }
+  .form { padding: 2rem; }
+  .fieldRow { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,76 @@
+﻿.header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 0.75rem 2rem;
+  background: rgba(13,13,13,0.97);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  transition: all 0.35s ease;
+  backdrop-filter: blur(12px);
+}
+.header.onHero {
+  background: transparent;
+  border-bottom-color: transparent;
+  backdrop-filter: none;
+}
+.header.scrolled {
+  background: rgba(10,10,10,0.98);
+  border-bottom-color: rgba(201,169,110,0.1);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+}
+.inner {
+  max-width: 1400px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+}
+.nav { display: flex; gap: 2rem; }
+.navLink {
+  font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.55); transition: color 0.3s; position: relative;
+  font-weight: 500;
+}
+.navLink::after {
+  content: ''; position: absolute; bottom: -4px; left: 0;
+  width: 0; height: 1px; background: #c9a96e; transition: width 0.3s;
+}
+.navLink:hover { color: #fff; }
+.navLink:hover::after, .navLink.active::after { width: 100%; }
+.navLink.active { color: #c9a96e; }
+.bookBtn {
+  padding: 0.55rem 1.4rem;
+  background: #c9a96e; color: #0d0d0d;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  text-decoration: none; transition: all 0.3s;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+}
+.bookBtn:hover { background: #d4b57e; }
+.menuToggle {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+}
+.menuToggle span { display: block; width: 24px; height: 1.5px; background: rgba(255,255,255,0.8); transition: all 0.3s; }
+.mobileNav {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999;
+  background: rgba(10,10,10,0.98); backdrop-filter: blur(16px);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+}
+.mobileLink {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem; font-weight: 700; color: rgba(255,255,255,0.7);
+  text-decoration: none; transition: color 0.3s; letter-spacing: 0.04em;
+}
+.mobileLink:hover, .mobileLink.active { color: #c9a96e; }
+.mobileClose {
+  position: absolute; top: 1.5rem; right: 2rem;
+  background: none; border: none; color: rgba(255,255,255,0.5);
+  font-size: 1.5rem; cursor: pointer; transition: color 0.2s;
+}
+.mobileClose:hover { color: #fff; }
+.mobileBookBtn {
+  display: inline-block; margin-top: 1rem; padding: 0.9rem 2.5rem;
+  background: #c9a96e; color: #0d0d0d;
+  font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  text-decoration: none;
+}
+@media (max-width: 900px) {
+  .nav { display: none; }
+  .bookBtn { display: none; }
+  .menuToggle { display: flex; }
+}

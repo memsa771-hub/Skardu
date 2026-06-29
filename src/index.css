@@ -1,0 +1,153 @@
+:root {
+  --primary: #1a1a1a;
+  --primary-hover: #333333;
+  --bg: #ffffff;
+  --bg-soft: #f7f5f1;
+  --bg-card: #ffffff;
+  --bg-elevated: #f0ece6;
+  --bg-dark: #111111;
+  --text-primary: #1a1a1a;
+  --text-muted: #6b6b6b;
+  --text-on-dark: #ffffff;
+  --text-muted-on-dark: #b8b8b8;
+  --border: #e4e0da;
+  --border-focus: #c9a96e;
+  --input-bg: #ffffff;
+  --input-border: #d4d0ca;
+  --input-text: #1a1a1a;
+  --input-placeholder: #9a9a9a;
+  --btn-primary-bg: #1a1a1a;
+  --btn-primary-text: #ffffff;
+  --btn-primary-hover: #333333;
+  --gold: #c9a96e;
+  --gold-light: #d4b57e;
+  --gold-dark: #b8955c;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Outfit', system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: #0d0d0d;
+  color: #fff;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+img, video {
+  max-width: 100%;
+  display: block;
+}
+
+::selection {
+  background: var(--primary);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-soft);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+/* ─── Global form controls — consistent readable contrast ─── */
+input:not([type='checkbox']):not([type='radio']),
+select,
+textarea {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--input-text);
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 2px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:not([type='checkbox']):not([type='radio']):focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--input-placeholder);
+}
+
+input[type='date'],
+input[type='time'] {
+  color-scheme: light;
+}
+
+select {
+  appearance: auto;
+  cursor: pointer;
+}
+
+select option {
+  color: var(--input-text);
+  background: #fff;
+}
+
+/* Primary action button pattern */
+.btn-primary {
+  display: inline-block;
+  padding: 0.85rem 1.5rem;
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  border: none;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--btn-primary-hover);
+}
+
+.btn-primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}

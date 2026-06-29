@@ -64,8 +64,8 @@ if (Test-Path "C:\Sites\nestopia\.git") {
 }
 OK "Repository ready"
 
-Log "Installing npm dependencies..."
-& npm install 2>&1 | Tail-Output
+Log "Installing npm dependencies (exact versions from lock file)..."
+& npm ci 2>&1 | Tail-Output
 OK "Dependencies installed"
 
 Log "Building production bundle..."

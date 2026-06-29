@@ -111,10 +111,9 @@ OK "Caddy added to PATH"
 # ----------------------------------------------------------
 # 7. Open firewall ports 80 and 443
 # ----------------------------------------------------------
-Log "Opening firewall ports..."
-netsh advfirewall firewall add rule name="Caddy HTTP"  protocol=TCP dir=in localport=80  action=allow | Out-Null
-netsh advfirewall firewall add rule name="Caddy HTTPS" protocol=TCP dir=in localport=443 action=allow | Out-Null
-OK "Ports 80 and 443 open"
+Log "Opening firewall port 8070..."
+netsh advfirewall firewall add rule name="Nestopia Hotel 8070" protocol=TCP dir=in localport=8070 action=allow | Out-Null
+OK "Port 8070 open"
 
 # ----------------------------------------------------------
 # 8. Install and start Caddy as Windows Service
@@ -142,9 +141,7 @@ Write-Host " SETUP COMPLETE!" -ForegroundColor Green
 Write-Host "============================================================" -ForegroundColor Yellow
 Write-Host " Site files : C:\Sites\nestopia\dist\" -ForegroundColor White
 Write-Host " Caddyfile  : C:\Caddy\Caddyfile" -ForegroundColor White
-Write-Host " Live URL   : https://nestopia-hotel-skardu.com" -ForegroundColor White
-Write-Host ""
-Write-Host " Make sure DNS is pointed BEFORE running this:" -ForegroundColor Yellow
-Write-Host " nestopia-hotel-skardu.com     -> 45.156.87.122" -ForegroundColor White
-Write-Host " www.nestopia-hotel-skardu.com -> 45.156.87.122" -ForegroundColor White
+Write-Host " Live URL   : http://45.156.87.122:8070  (direct IP)" -ForegroundColor White
+Write-Host " Domain     : configure reverse proxy in your existing server to" -ForegroundColor White
+Write-Host "              forward nestopia-hotel-skardu.com -> http://127.0.0.1:8070" -ForegroundColor White
 Write-Host "============================================================" -ForegroundColor Yellow

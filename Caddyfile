@@ -1,4 +1,9 @@
-nestopia-hotel-skardu.com {
+# Caddy listens on port 8070 (HTTP)
+# Ports 80/443 are used by another service on this server.
+# To make the domain work without a port number, configure your existing
+# server (IIS/nginx/etc.) to reverse proxy nestopia-hotel-skardu.com -> http://127.0.0.1:8070
+
+:8070 {
     root * C:/Sites/nestopia/dist
     file_server
 
@@ -22,14 +27,8 @@ nestopia-hotel-skardu.com {
 
     # Security headers
     header {
-        Strict-Transport-Security "max-age=31536000; includeSubDomains"
         X-Content-Type-Options "nosniff"
         X-Frame-Options "DENY"
         Referrer-Policy "strict-origin-when-cross-origin"
     }
-}
-
-# Redirect www to non-www
-www.nestopia-hotel-skardu.com {
-    redir https://nestopia-hotel-skardu.com{uri} permanent
 }

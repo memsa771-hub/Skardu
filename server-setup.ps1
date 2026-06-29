@@ -65,11 +65,15 @@ if (Test-Path "C:\Sites\nestopia\.git") {
 OK "Repository ready"
 
 Log "Installing npm dependencies (exact versions from lock file)..."
+$ErrorActionPreference = "Continue"
 & npm ci 2>&1 | Tail-Output
+$ErrorActionPreference = "Stop"
 OK "Dependencies installed"
 
 Log "Building production bundle..."
+$ErrorActionPreference = "Continue"
 & npm run build 2>&1 | Tail-Output
+$ErrorActionPreference = "Stop"
 if (-not (Test-Path "C:\Sites\nestopia\dist\index.html")) {
     Die "Build failed — dist/index.html not found"
 }

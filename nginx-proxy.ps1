@@ -98,7 +98,7 @@ OK "nestopia.conf written"
 # 5. Test nginx config
 # ----------------------------------------------------------
 Log "Testing nginx configuration..."
-$test = & "$nginxDir\nginx.exe" -t 2>&1
+$test = & "$nginxDir\nginx.exe" -p "$nginxDir" -t 2>&1
 if ($LASTEXITCODE -ne 0) {
     Write-Host $test
     Die "nginx config test failed — check the output above"
@@ -109,7 +109,7 @@ OK "nginx config OK"
 # 6. Reload nginx (zero-downtime)
 # ----------------------------------------------------------
 Log "Reloading nginx..."
-& "$nginxDir\nginx.exe" -s reload
+& "$nginxDir\nginx.exe" -p "$nginxDir" -s reload
 OK "nginx reloaded — site live on http://$DOMAIN"
 
 # ----------------------------------------------------------
@@ -182,7 +182,7 @@ server {
 }
 "@
     [System.IO.File]::WriteAllText("$nginxSites\nestopia.conf", $httpsConf, [System.Text.Encoding]::UTF8)
-    & "$nginxDir\nginx.exe" -s reload
+    & "$nginxDir\nginx.exe" -p "$nginxDir" -s reload
     OK "HTTPS live at https://$DOMAIN"
 }
 
